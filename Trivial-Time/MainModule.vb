@@ -54,13 +54,16 @@ Friend Module MainModule
         _players.AddRange(save.Players)
 
         '_players(_currentPlayer).Pion.Position = save.Players(0).Pion.Position
-        _currentPlayer = save.lastPlayer
-        mainWindow.loadGame(save.Players(0), save.Players(1), save.Players(2), save.Players(3), 1)
+        _currentPlayer = save.LastPlayer
+        mainWindow.loadGame(1)
         switchWindow(menuWindow, mainWindow)
     End Sub
 
     Public Sub saveGame(saveName As String)
-        gameLogger.saveGame(New GameSave(saveName, _players.ToArray, _currentPlayer))
+        Dim save = New GameSave(saveName)
+        save.LastPlayer = _currentPlayer
+        save.Players = _players
+        gameLogger.saveGame(save)
     End Sub
 
     Public Function getSaveNames() As List(Of String)

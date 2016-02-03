@@ -68,27 +68,18 @@ Public Class MainWindow
         chooseStartingPlayer()
     End Sub
 
-    Public Sub loadGame(player1 As Player, player2 As Player, player3 As Player, player4 As Player, dice As Integer)
+    Public Sub loadGame(dice As Integer)
         Me.questionPresenter.QuestionTime = Settings.QuestionTime
 
-        player1.PlayerInfo = player1InfoControl
-        drawPion(player1)
-        player2.PlayerInfo = player2InfoControl
-        drawPion(player2)
-
-        If Not player3 Is Nothing Then
-            player3.PlayerInfo = player3InfoControl
-            drawPion(player3)
-        Else
-            player3InfoControl.IsEnabled = False
-        End If
-
-        If Not player4 Is Nothing Then
-            player4.PlayerInfo = player4InfoControl
-            drawPion(player4)
-        Else
-            player4InfoControl.IsEnabled = False
-        End If
+        For Each player As Player In _players
+            Select Case _players.IndexOf(player)
+                Case 0 : player.PlayerInfo = player1InfoControl
+                Case 1 : player.PlayerInfo = player2InfoControl
+                Case 2 : player.PlayerInfo = player3InfoControl
+                Case 3 : player.PlayerInfo = player4InfoControl
+            End Select
+            drawPion(player)
+        Next
 
         disableAllTiles()
         __startingPlayerChosen = True
@@ -392,7 +383,7 @@ Public Class MainWindow
 
         Dim numberOfPions As Byte = 0
         For i As Byte = 0 To _players.Count - 1                 'Resize pions
-            If _players(i).Pion.Position Is destination Then
+            If (_players(i).Pion.Position Is destination) Then
                 Dim xAnimation As New DoubleAnimation
                 Dim yAnimation As New DoubleAnimation
                 Dim sizeAnimation As New DoubleAnimation
@@ -450,12 +441,14 @@ Public Class MainWindow
 
     Private Sub HighlightPlayer()
         For Each Player As Player In _players
-            If Player Is _players(_currentPlayer) Then
-                Player.Pion.Highlight(_pionSize, True)
-                Player.PlayerInfo.Highlight()
-            Else
-                Player.Pion.ResetHighlight()
-                Player.PlayerInfo.ResetHighlight()
+            If Not Player Is Nothing Then
+                If Player Is _players(_currentPlayer) Then
+                    Player.Pion.Highlight(_pionSize, True)
+                    Player.PlayerInfo.Highlight()
+                Else
+                    Player.Pion.ResetHighlight()
+                    Player.PlayerInfo.ResetHighlight()
+                End If
             End If
         Next
     End Sub

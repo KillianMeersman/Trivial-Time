@@ -4,7 +4,7 @@ Public Class GameLogger
     Public Sub saveGame(save As GameSave)
         Using writer As New StreamWriter("save" & save.Name & ".txt")
             writer.WriteLine("*** " & save.Name & " ***")
-            writer.WriteLine()
+            writer.WriteLine("Last player-index: " & save.LastPlayer)
             writer.WriteLine("PlayerCount: " & save.Players.Count)
             For i As Byte = 0 To save.Players.Count - 1
                 writer.WriteLine("*** Player " & i + 1 & " ***")
@@ -29,9 +29,8 @@ Public Class GameLogger
             Dim player As Player
             Using reader As New StreamReader("save" & saveName & ".txt")
                 reader.ReadLine()
-                reader.ReadLine
+                save.LastPlayer = reader.ReadLine.Substring("Last player-index: ".Length)
                 Dim numberOfPlayers As Byte = reader.ReadLine.Substring("PlayerCount: ".Length)
-                save.LastPlayer = numberOfPlayers - 1
                 For i As Byte = 0 To numberOfPlayers - 1
                     reader.ReadLine()
                     player = New Player(reader.ReadLine, New BrushConverter().ConvertFromString(reader.ReadLine), MainModule.mainWindow.FindName(reader.ReadLine))
@@ -43,7 +42,7 @@ Public Class GameLogger
                     player.HasScience = reader.ReadLine
                     player.HasSports = reader.ReadLine
                     reader.ReadLine()
-                    save.addPlayer(player)
+                    save.Players.Add(player)
                 Next
             End Using
             Return save
