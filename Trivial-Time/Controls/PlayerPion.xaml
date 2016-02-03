@@ -1,0 +1,22 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" xmlns:local="clr-namespace:Trivial_Time" x:Class="PlayerPion" 
+             mc:Ignorable="d" 
+             d:DesignHeight="129.333" d:DesignWidth="138.334">
+    <Viewbox x:Name="mainViewbox">
+        <Grid x:Name="MainGrid" Height="120" Width="121" >
+            <Ellipse x:Name="strokeCircle" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="131" StrokeThickness="10" Margin="-5" Stroke="White"/>
+            <Ellipse x:Name="outerCircle" Stroke="Black" Fill="White" StrokeThickness="1.5" Margin="5"/>
+            <ed:Arc x:Name="historyPie" ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="30" Stretch="None" StartAngle="-30" Margin="10" Fill="#FFD8E037" Stroke="Black"/>
+            <ed:Arc x:Name="sciencePie" ArcThickness="1" ArcThicknessUnit="Percent" Fill="#FF8AF520" Stretch="None" Stroke="Black" StartAngle="30" Margin="10"/>
+            <ed:Arc x:Name="Arts_and_LiteraturePie" ArcThickness="1" ArcThicknessUnit="Percent" Fill="#FFD63B22" Stretch="None" Stroke="Black" StartAngle="90" EndAngle="150" Margin="10"/>
+            <ed:Arc x:Name="sportsPie" ArcThickness="1" ArcThicknessUnit="Percent" Fill="#FFE6771A" Stretch="None" Stroke="Black" StartAngle="150" EndAngle="210" Margin="10"/>
+            <ed:Arc x:Name="entertainmentPie" ArcThickness="1" ArcThicknessUnit="Percent" Fill="#FFB61373" Stretch="None" Stroke="Black" StartAngle="210" EndAngle="270" Margin="10"/>
+            <ed:Arc x:Name="geographyPie" ArcThickness="1" ArcThicknessUnit="Percent" Fill="#FF351CD1" Stretch="None" Stroke="Black" StartAngle="270" EndAngle="330" IsHitTestVisible="False" Margin="10"/>
+            <Ellipse x:Name="innerCircle" Margin="0" Width="30" Height="30" Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
+    </Viewbox>
+</UserControl>

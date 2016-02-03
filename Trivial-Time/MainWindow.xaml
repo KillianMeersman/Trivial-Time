@@ -1,0 +1,824 @@
+﻿<Window
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Trivial_Time" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MainWindow"
+    Title="Trivial Time" d:DesignWidth="1869" d:DesignHeight="1102.5" Width="1024" Height="768" WindowState="Maximized" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="false" WindowStyle="None">
+    <Window.Resources>
+        <Storyboard x:Key="RotatePlayerInfo">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="player1InfoControl">
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="180"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="player3InfoControl">
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="270"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:8" Value="90"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="player2InfoControl">
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="360"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:8" Value="180"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="player4InfoControl">
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:8" Value="-90"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="DiceArc1To3"/>
+        <Storyboard x:Key="DiceArc3To2"/>
+        <Storyboard x:Key="DiceArc2To4"/>
+        <Storyboard x:Key="DiceArc4To1"/>
+    </Window.Resources>
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="#FF2D2766" Offset="0"/>
+            <GradientStop Color="#FF242142" Offset="1"/>
+            <GradientStop Color="#FF3B375F" Offset="0.609"/>
+        </RadialGradientBrush>
+    </Window.Background>
+
+
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Viewbox x:Name="boardViewbox">
+            <Grid x:Name="boardGrid">
+                <Canvas x:Name="Gameboard" Margin="0" RenderTransformOrigin="0.5,0.5" Height="760" Width="1016">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Ellipse Width="590" Height="600" StrokeThickness="10" Stroke="#FF1E1653" Canvas.Left="200" Canvas.Top="75" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="0.75"/>
+                    <local:WedgeControl x:Name="Wedge0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="84" Category="Sports" RenderTransformOrigin="0.5,0.35" Canvas.Left="455" Canvas.Top="90">
+
+                        <local:WedgeControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:WedgeControl.RenderTransform>
+                    </local:WedgeControl>
+
+                    <local:HexagonControl x:Name="CenterHex" HorizontalAlignment="Left" VerticalAlignment="Top" Height="107" Width="110" Canvas.Left="442" Canvas.Top="322" Category="None" RenderTransformOrigin="0,0.5"/>
+                    <local:RectangleControl x:Name="T5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="661" Canvas.Top="191">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-42.604"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="26" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="526" Canvas.Top="110">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-77.495"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="27" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="638" Canvas.Top="169">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-48.942"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="25" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="555" Canvas.Top="120">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-70.311"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="585" Canvas.Top="132">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-63.569"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="25" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="611" Canvas.Top="148">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-56.572"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T40" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="Geography" Canvas.Left="469" Canvas.Top="294"/>
+                    <local:RectangleControl x:Name="T39" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="History" Canvas.Left="469" Canvas.Top="257"/>
+                    <local:RectangleControl x:Name="T38" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="25" Category="Entertainment" Canvas.Left="469" Canvas.Top="221"/>
+                    <local:RectangleControl x:Name="T37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="28" Category="Arts_and_Literature" Canvas.Left="469" Canvas.Top="185"/>
+                    <local:RectangleControl x:Name="T36" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="29" Category="Science" Canvas.Left="469" Canvas.Top="151"/>
+                    <local:RectangleControl x:Name="T50" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="528" Canvas.Top="396">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="120.292"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:WedgeControl x:Name="Wedge2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="84" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="677" Canvas.Top="477">
+
+                        <local:WedgeControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="119.852"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:WedgeControl.RenderTransform>
+                    </local:WedgeControl>
+
+                    <local:RectangleControl x:Name="T49" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="27" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="556" Canvas.Top="413">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="120.231"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T48" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="586" Canvas.Top="431">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="120.361"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T47" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="25" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="616" Canvas.Top="448">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="119.918"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T46" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="27" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="649" Canvas.Top="467">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="119.918"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T55" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="469" Canvas.Top="433">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="179.942"/>
+                                <TranslateTransform Y="-3"/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:WedgeControl x:Name="Wedge3" VerticalAlignment="Top" Height="57.156" Category="Science" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" HorizontalAlignment="Left" Width="83.95" Canvas.Left="453" Canvas.Top="606">
+                        <local:WedgeControl.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:WedgeControl.LayoutTransform>
+                    </local:WedgeControl>
+
+                    <local:RectangleControl x:Name="T54" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="27" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="469" Canvas.Top="463">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="179.942"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T53" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="27" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="469" Canvas.Top="498">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="179.942"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T52" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="25" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="469" Canvas.Top="536">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="179.942"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T51" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="28" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="469" Canvas.Top="572">
+
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="179.942"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T11" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="27" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="714" Canvas.Top="442">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="18.569"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="715" Canvas.Top="283">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-17.688"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="28" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="723" Canvas.Top="411">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="10.865"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="28" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="724" Canvas.Top="313">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-11.227"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T8" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="29" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="726" Canvas.Top="345">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-4.34"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T9" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="726" Canvas.Top="381">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="3.235"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T17" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="29" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="523" Canvas.Top="615">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="77.88"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="660" Canvas.Top="536">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="42.036"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="26" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="554" Canvas.Top="606">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="70.589"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T13" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="26" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="638" Canvas.Top="557">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="48.497"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T14" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="26" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="611" Canvas.Top="578">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="55.384"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T15" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="27" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="584" Canvas.Top="593">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="63.46"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="27" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="273" Canvas.Top="530">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="139.005"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T18" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="414" Canvas.Top="615">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="101.454"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="27" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="295" Canvas.Top="555">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="131.665"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T19" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="26" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="380" Canvas.Top="606">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="109.573"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="352" Canvas.Top="592">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="116.46"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T21" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="323" Canvas.Top="575">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="124.035"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T29" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57" Height="29" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="222" Canvas.Top="280">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-161.375"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T24" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57" Height="27" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="219" Canvas.Top="439">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="162.096"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="27" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="214" Canvas.Top="313">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-169.116"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T25" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57" Height="27" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="212" Canvas.Top="408">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="170.134"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T26" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="28" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="209" Canvas.Top="375">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="175.679"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T27" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="27" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="209" Canvas.Top="344">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-176.746"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T35" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="27" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="412" Canvas.Top="108">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-103.939"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="25" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="277" Canvas.Top="190">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-137.516"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T34" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="26" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="380" Canvas.Top="119">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-110.301"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T31" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="26" Category="None" RenderTransformOrigin="0.5,0.5" Canvas.Left="300" Canvas.Top="167">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-130.969"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T32" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="26" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="325" Canvas.Top="146">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-123.771"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T33" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="28" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="354" Canvas.Top="130">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-116.895"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:WedgeControl x:Name="Wedge4" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="83" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="229" Canvas.Top="471">
+                        <local:WedgeControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-118.529"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:WedgeControl.RenderTransform>
+                    </local:WedgeControl>
+                    <local:RectangleControl x:Name="T60" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Height="28" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="411" Canvas.Top="395">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-119.724"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T59" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="28" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="382" Canvas.Top="412">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-119.724"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T58" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="27" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="351" Canvas.Top="430">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-119.724"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T57" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="27" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="322" Canvas.Top="448">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-119.724"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T56" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="24" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="292" Canvas.Top="465">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-119.724"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:WedgeControl x:Name="Wedge5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="57" Width="86" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="230" Canvas.Top="218">
+                        <local:WedgeControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-60.22"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:WedgeControl.RenderTransform>
+                    </local:WedgeControl>
+                    <local:RectangleControl x:Name="T65" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="410" Canvas.Top="328">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-59.407"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T64" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="25" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="380" Canvas.Top="311">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-60.102"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T63" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="26" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="352" Canvas.Top="294">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-59.262"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T62" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="27" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="322" Canvas.Top="276">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-59.946"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T61" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="25" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="292" Canvas.Top="261">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-59.188"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+
+                    <local:RectangleControl x:Name="T45" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Sports" RenderTransformOrigin="0.5,0.5" Canvas.Left="528" Canvas.Top="329">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="59.824"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:WedgeControl x:Name="Wedge1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="58" Width="84" Category="History" RenderTransformOrigin="0.5,0.5" Canvas.Left="677" Canvas.Top="218">
+                        <local:WedgeControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="60.324"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:WedgeControl.RenderTransform>
+                    </local:WedgeControl>
+                    <local:RectangleControl x:Name="T44" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="25" Category="Entertainment" RenderTransformOrigin="0.5,0.5" Canvas.Left="561" Canvas.Top="311">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="59.717"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T43" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="29" Category="Science" RenderTransformOrigin="0.5,0.5" Canvas.Left="591" Canvas.Top="293">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="59.508"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T42" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Category="Geography" RenderTransformOrigin="0.5,0.5" Canvas.Left="622" Canvas.Top="275">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="59.796"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RectangleControl x:Name="T41" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="26" Category="Arts_and_Literature" RenderTransformOrigin="0.5,0.5" Canvas.Left="649" Canvas.Top="259">
+                        <local:RectangleControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="59.744"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RectangleControl.RenderTransform>
+                    </local:RectangleControl>
+                    <local:RoundPlayerInfoControl x:Name="player1InfoControl" Height="783" Canvas.Left="-121" Canvas.Top="10" Width="1176" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.522,0.454">
+                        <local:RoundPlayerInfoControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </local:RoundPlayerInfoControl.RenderTransform>
+                    </local:RoundPlayerInfoControl>
+                    <local:RoundPlayerInfoControl x:Name="player3InfoControl" RenderTransformOrigin="0.524,0.459" Height="789" Canvas.Left="-128" Canvas.Top="-99" Width="1178" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <local:RoundPlayerInfoControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform X="7.413" Y="112.389"/>
+                            </TransformGroup>
+                        </local:RoundPlayerInfoControl.RenderTransform>
+                    </local:RoundPlayerInfoControl>
+                    <local:RoundPlayerInfoControl x:Name="player2InfoControl" RenderTransformOrigin="0.527,0.461" Height="788" Canvas.Left="-6" Canvas.Top="-100" Width="1176" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <local:RoundPlayerInfoControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform X="-118.152" Y="113.88"/>
+                            </TransformGroup>
+                        </local:RoundPlayerInfoControl.RenderTransform>
+                    </local:RoundPlayerInfoControl>
+                    <local:RoundPlayerInfoControl x:Name="player4InfoControl" RenderTransformOrigin="0.527,0.467" Height="784" Canvas.Left="-12" Width="1186" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="8">
+                        <local:RoundPlayerInfoControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90"/>
+                                <TranslateTransform X="-115.124" Y="-3.892"/>
+                            </TransformGroup>
+                        </local:RoundPlayerInfoControl.RenderTransform>
+                    </local:RoundPlayerInfoControl>
+                </Canvas>
+                <local:DiceControl x:Name="diceControl" Cursor="" RenderTransformOrigin="0.5,0.5" Margin="840,25,26,585" />
+            </Grid>
+        </Viewbox>
+        <local:NotificationControl x:Name="notificationControl" Margin="0,255" Width="Auto" VerticalAlignment="Center" Visibility="Hidden"/>
+        <local:NotificationControl x:Name="upperNotificationControl" Margin="0,0,0,550" Width="Auto" VerticalAlignment="Center" Height="210" Color="{x:Null}" Visibility="Hidden"/>
+        <Viewbox x:Name="infoViewbox" HorizontalAlignment="Left">
+            <Grid x:Name="InfoGrid" Height="760" Width="1016">
+                <Rectangle x:Name="backRectangle" HorizontalAlignment="Left" Height="105" RadiusY="15" RadiusX="15" VerticalAlignment="Center" Width="119" Margin="-10,0,0,0" Opacity="0.5" Fill="#FF3A4CBD"/>
+                <Image x:Name="backImage" HorizontalAlignment="Left" Height="77" VerticalAlignment="Center" Width="77" Margin="21,0,0,0" Source="Resources/pauseIcon.png" Stretch="Fill"/>
+            </Grid>
+        </Viewbox>
+        <local:QuestionControl x:Name="questionPresenter" Margin="50,147" Visibility="Hidden" />
+        <local:WinControl x:Name="winControl" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" OkColor="#FFCDAA32" Visibility="Hidden" />
+    </Grid>
+
+</Window>

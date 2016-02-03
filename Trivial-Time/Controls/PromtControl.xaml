@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="PromtControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="145.333" d:DesignWidth="300">
+
+    <Viewbox>
+
+        <Grid x:Name="mainGrid" Height="145" Width="300">
+            <Grid.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF2D2766" Offset="0"/>
+                    <GradientStop Color="#FF242142" Offset="1"/>
+                    <GradientStop Color="#FF282352" Offset="0.609"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+            <TextBlock x:Name="promtTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,19,0,0" Width="280" Foreground="White" Height="45" TextAlignment="Center" Text="Bent u zeker dat u dit wilt doen?&#xD;&#xA;Dit kan uw huidige spel stopzetten." />
+            <Rectangle x:Name="okRectangle" Fill="#FF146C0B" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="102" Margin="30,86,0,0" RadiusY="15" RadiusX="15"/>
+            <TextBlock x:Name="okTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="OK" VerticalAlignment="Top" Margin="69,94,0,0" Foreground="White"/>
+            <Rectangle x:Name="cancelRectangle" Fill="#FF6C0B0B" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="102" Margin="168,86,0,0" RadiusY="15" RadiusX="15"/>
+            <TextBlock x:Name="cancelTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Annuleren" VerticalAlignment="Top" Margin="194,94,0,0" Foreground="White"/>
+            <Separator HorizontalAlignment="Left" Height="100" Margin="10,15,0,0" VerticalAlignment="Top" Width="280" Background="#FF1C183E"/>
+            <Rectangle Stroke="#FF181440" Opacity="0.75"/>
+        </Grid>
+    </Viewbox>
+
+
+
+</UserControl>

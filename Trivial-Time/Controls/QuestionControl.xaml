@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="QuestionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="212" d:DesignWidth="300">
+    <Viewbox x:Name="mainViewbox">
+        <Grid x:Name="mainGrid" Height="533" Width="760">
+
+            <Rectangle x:Name="titleRectangle" Fill="#FF2E2E3E" Height="200" VerticalAlignment="Top" Margin="0" Opacity="0.9" RadiusY="20" RadiusX="20"/>
+            <Rectangle x:Name="mainRectangle" Stroke="Black" Margin="0" Opacity="0.85" RadiusY="20" RadiusX="20" >
+                <Rectangle.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FF2D2766" Offset="0"/>
+                        <GradientStop Color="#FF242142" Offset="1"/>
+                        <GradientStop Color="#FF282352" Offset="0.609"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="strokeRectangle" HorizontalAlignment="Left" Height="513" RadiusY="20" RadiusX="20" Stroke="White" VerticalAlignment="Top" Width="740" StrokeThickness="5" Margin="10,10,0,0"/>
+            <Image x:Name="categoryImage" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="140" Margin="32,22,0,0" Source="/Trivial-Time;component/Resources/Science.png"/>
+            <TextBlock x:Name="questionTextblock" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="218,47,0,0" Height="108" Width="507" FontSize="24" Foreground="White" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" UseLayoutRounding="False" Text="Vraag"/>
+            <StackPanel x:Name="buttonStackpanel" Margin="20,215,20,20">
+                <Button x:Name="answer1Button" Content="Antwoord 1" Margin="20,20,20,0" Background="#FF2D2064" BorderBrush="#FF171414" FontSize="22" Foreground="White" Height="50" VerticalAlignment="Top"/>
+                <Button x:Name="answer2Button" Content="Antwoord 2" Margin="20,20,20,0" Background="#FF2D2064" BorderBrush="#FF171414" FontSize="22" Foreground="White" Height="50" VerticalAlignment="Top"/>
+                <Button x:Name="answer3Button" Content="Antwoord 3" Margin="20,20,20,0" Background="#FF2D2064" BorderBrush="#FF171414" FontSize="22" Foreground="White" Height="50" VerticalAlignment="Top"/>
+                <Button x:Name="answer4Button" Content="Antwoord 4" Margin="20,20,20,0" Background="#FF2D2064" BorderBrush="#FF171414" FontSize="22" Foreground="White" Height="50" VerticalAlignment="Top"/>
+            </StackPanel>
+            <TextBlock x:Name="categoryTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Kunst en literatuur" VerticalAlignment="Top" Margin="32,173,0,0" Width="140" Height="18" Foreground="White" TextAlignment="Center"/>
+            <TextBlock x:Name="timeTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="678,160,0,0" Width="47" Height="36" Foreground="White" TextAlignment="Center" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.294,0.481"/>
+        </Grid>
+    </Viewbox>
+</UserControl>

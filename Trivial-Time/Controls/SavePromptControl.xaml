@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="SavePromptControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="124" d:DesignWidth="300">
+
+
+    <Viewbox>
+
+
+        <Grid x:Name="mainGrid" Height="124" Width="300">
+            <Grid.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF2D2766" Offset="0"/>
+                    <GradientStop Color="#FF242142" Offset="1"/>
+                    <GradientStop Color="#FF282352" Offset="0.609"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+            <TextBlock x:Name="promtTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,10,0,0" Width="280" Foreground="White" Height="20" TextAlignment="Center" Text="Geef een naam op" />
+            <Rectangle x:Name="okRectangle" Fill="#FF146C0B" HorizontalAlignment="Center" Height="30" VerticalAlignment="Bottom" Width="100" Margin="25,0,175,10" RadiusY="15" RadiusX="15"/>
+            <TextBlock x:Name="okTextblock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="OK" VerticalAlignment="Bottom" Margin="39,0,193,16" Foreground="White" TextAlignment="Center" Width="68"/>
+            <Separator HorizontalAlignment="Left" Height="100" Margin="10,-16,0,0" VerticalAlignment="Top" Width="280" Background="#FF1C183E"/>
+            <Rectangle Stroke="#FF181440" Opacity="0.75"/>
+            <TextBox x:Name="saveNameTextblock" TextWrapping="Wrap" Margin="20,41,20,0" Background="{x:Null}" BorderBrush="#FF17173C" VerticalAlignment="Top" Height="23" Foreground="White"/>
+            <Rectangle x:Name="cancelRectangle" Fill="#FF932525" HorizontalAlignment="Center" Height="30" VerticalAlignment="Bottom" Width="100" Margin="173,0,26,10" RadiusY="15" RadiusX="15"/>
+            <TextBlock x:Name="cancelRectangleTextblock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Annuleren" VerticalAlignment="Bottom" Margin="190,0,41,18" Foreground="White" Height="16" Width="69" TextAlignment="Center"/>
+        </Grid>
+
+    </Viewbox>
+
+</UserControl>

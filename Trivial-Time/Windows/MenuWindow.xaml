@@ -1,0 +1,138 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:Trivial_Time" mc:Ignorable="d" x:Class="MenuWindow"
+    Title="MenuWindow" WindowStartupLocation="CenterScreen" d:DesignWidth="1260" d:DesignHeight="938.5" Closing="Window_Closing" Height="768" Width="1024" WindowState="Maximized" WindowStyle="None" >
+    <Window.Resources>
+        <DataTemplate x:Key="ItemTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Color}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ItemTemplate1">
+            <StackPanel>
+                <TextBlock Text="{Binding Color}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ItemTemplate2">
+            <StackPanel>
+                <TextBlock Text="{Binding Color}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ItemTemplate3">
+            <StackPanel>
+                <TextBlock Text="{Binding Color}"/>
+            </StackPanel>
+        </DataTemplate>
+        <Storyboard x:Key="rotateBackground" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="backgroundImage">
+                <EasingDoubleKeyFrame KeyTime="0:1:0" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource rotateBackground}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="#FF2D2766" Offset="0"/>
+            <GradientStop Color="#FF242142" Offset="1"/>
+            <GradientStop Color="#FF282352" Offset="0.609"/>
+        </RadialGradientBrush>
+    </Window.Background>
+
+
+    <Grid x:Name="rootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Viewbox x:Name="mainViewbox">
+            <Grid x:Name="mainGrid" Height="760" Width="1016">
+                <Image x:Name="backgroundImage" HorizontalAlignment="Left" Height="1317" VerticalAlignment="Top" Width="1317" Margin="355.333,-637.667,-656.333,0" Source="/Trivial-Time;component/Resources/gameboardBackground.PNG" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Trivial Time" VerticalAlignment="Top" Margin="10,10,0,0" Height="104" Width="996" Foreground="White" FontSize="72" TextAlignment="Center"/>
+
+                <TextBlock x:Name="warningTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="753,688,0,0" Height="62" Width="253" FontSize="14" Foreground="#FF28641B" FontWeight="Bold"><Run Text="Message"/></TextBlock>
+                <Image x:Name="warningImage" HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="56" Margin="692,688,0,0" Source="/Trivial-Time;component/Resources/tickIcon.png" RenderTransformOrigin="0.523,0.882"/>
+
+                <local:LeftButton x:Name="playButton" Margin="20,164,844,536" Text="Nieuw spel" Width="152" VerticalAlignment="Top" HorizontalAlignment="Left" Enabled="True" />
+                <local:RightButton x:Name="resumeButton" Margin="177,164,759,536" Text="" Image="/Trivial-Time;component/Resources/resumeIcon.png" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <local:LeftButton x:Name="loadButton" Margin="20,240,844,460" VerticalAlignment="Top" HorizontalAlignment="Left" Width="152" Text="Laad spel" />
+                <local:RightButton x:Name="saveButton" Margin="177,240,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Image="/Trivial-Time;component/Resources/saveIcon.png" Text="" />
+                <local:FullButton x:Name="exitButton" Margin="24,680,0,0" Text="Afsluiten" Color="#FFA81414" Image="/Trivial-Time;component/Resources/closeIcon.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="60" Width="233" />
+                <local:LeftButton x:Name="optionsButton" Margin="20,320,0,0" Height="60" Width="152" Color="#FFB98528" HorizontalAlignment="Left" VerticalAlignment="Top" Text="Opties" Image="/Trivial-Time;component/Resources/optionsIcon.png" />
+                <local:RightButton x:Name="helpButton" Margin="177,320,0,0" Color="#FFB98528" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+                <Grid x:Name="startGrid" Margin="0,139,192,0" Height="540" MinWidth="479" MinHeight="360" Width="489" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Hidden">
+                    <local:PlayerCreationControl x:Name="player1CreationControl" Margin="10,10,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" VerticalAlignment="Top" HorizontalAlignment="Left" Height="200" Width="200" Color="#FF181866" RemoveButtonColor="#FF18E4C8" PlayerEnabled="True"  />
+                    <local:PlayerCreationControl x:Name="player2CreationControl" Margin="268,10,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" VerticalAlignment="Top" HorizontalAlignment="Left" Height="200" Width="200" Color="#FF181866" RemoveButtonColor="#FF18E4C8" PlayerEnabled="True" PlayerName="Speler 2" />
+                    <local:PlayerCreationControl x:Name="player3CreationControl" Margin="10,233,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" VerticalAlignment="Top" HorizontalAlignment="Left" Height="200" Width="200" Color="#FF181866" RemoveButtonColor="#FF07012C" PlayerName="Speler 3" CanBeDisabled="True" />
+                    <local:PlayerCreationControl x:Name="player4CreationControl" Margin="268,233,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" VerticalAlignment="Top" HorizontalAlignment="Left" Height="200" Width="200" Color="#FF181866" RemoveButtonColor="#FF07012C" PlayerName="Speler 4" CanBeDisabled="True"  />
+                    <local:FullButton x:Name="startButton" Margin="15,457,0,0" Text="Start spel" Color="#FF3C6A34" Image="/Trivial-Time;component/Resources/playIcon.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="64" Width="445" />
+                </Grid>
+
+
+                <Grid x:Name="optionGrid" MinWidth="479" MinHeight="360" Margin="0,139,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="712" Height="597" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="serverTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="ineke.broeders.be" VerticalAlignment="Top" Width="679" Margin="101,76,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"/>
+                    <Label Content="MySQL database" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,16,0,0" Foreground="White" FontSize="24"/>
+                    <Rectangle Fill="White" HorizontalAlignment="Left" Height="3" Stroke="Black" VerticalAlignment="Top" Width="668" Margin="10,55,0,0"/>
+                    <Label Content="Server:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0" FontSize="14" Foreground="White"/>
+                    <Label Content="Database:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,104,0,0" FontSize="14" Foreground="White"/>
+                    <TextBox x:Name="databaseTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="trivialtime1415" VerticalAlignment="Top" Width="679" Margin="101,110,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                    <Label Content="User-ID:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,138,0,0" FontSize="14" Foreground="White"/>
+                    <Label Content="Paswoord:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,172,0,0" FontSize="14" Foreground="White"/>
+                    <TextBox x:Name="userIdTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="ll-64375" VerticalAlignment="Top" Width="679" Margin="101,144,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                    <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="101,178,0,0" Height="23" Width="679" Password="thetarun" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                    <Label Content="Volledig scherm:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,345,0,0" FontSize="14" Foreground="White"/>
+                    <CheckBox x:Name="fullscreenCheckbox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="127,354,0,0"  IsChecked="True" Unchecked="fullscreenCheckbox_Unchecked"/>
+                    <Label Content="Grafische opties" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,298,0,0" Foreground="White" FontSize="24"/>
+                    <Rectangle Fill="White" HorizontalAlignment="Left" Height="3" Stroke="Black" VerticalAlignment="Top" Width="668" Margin="10,337,0,0"/>
+                    <Label Content="Spelopties" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,395,0,0" Foreground="White" FontSize="24"/>
+                    <Rectangle Fill="White" HorizontalAlignment="Left" Height="3" Stroke="Black" VerticalAlignment="Top" Width="668" Margin="10,434,0,0"/>
+                    <Label Content="Tijd voor vragen (0 voor geen tijdslimiet):" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,442,0,0" FontSize="14" Foreground="White"/>
+                    <Slider x:Name="questionTimeSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,449,0,0" Width="363" Maximum="120" SmallChange="1" Value="25" AutoToolTipPlacement="BottomRight"/>
+                    <Label Content="Snelle keuze voor startende speler:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,476,0,0" FontSize="14" Foreground="White"/>
+                    <CheckBox x:Name="skipStartingPlayerCheckbox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,485,0,0" RenderTransformOrigin="2.05,0.667" />
+                    <Label Content="Licht tegels op tijdens het teerlingwerpen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,510,0,0" FontSize="14" Foreground="White"/>
+                    <CheckBox x:Name="diceTileHighlightCheckbox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,519,0,0" RenderTransformOrigin="0.827,0.639" IsChecked="True" />
+                    <local:FullButton x:Name="connectButton" Margin="10,220,0,0" Text="Verbind" Color="#FF3C6A34" Image="/Trivial-Time;component/Resources/connectIcon.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="60" Width="295" />
+                    <Label Content="Sla teerlingwerpen over met klik:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,544,0,0" FontSize="14" Foreground="White"/>
+                    <CheckBox x:Name="skipDiceWithClickCheckbox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,552,0,0" RenderTransformOrigin="0.827,0.639" IsChecked="True" />
+                    <TextBlock x:Name="timeValueTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="646,449,0,0" Foreground="White" Width="32" Text="25"/>
+                    <Label Content="Informeer juist/fout" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="319,476,0,0" FontSize="14" Foreground="White"/>
+                    <CheckBox x:Name="informQuestionCheckbox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="455,485,0,0" />
+                </Grid>
+                <Grid x:Name="helpGrid" HorizontalAlignment="Left" Height="508" VerticalAlignment="Top" Width="556" Margin="378,160,0,0" Visibility="Hidden">
+                    <TextBlock x:Name="helpTitleTextblock" TextWrapping="Wrap" Foreground="White" FontSize="36" Margin="0,0,0,432" Text="INSTRUCTIES" FontWeight="Bold" TextDecorations="{x:Null}" TextAlignment="Center"/>
+                    <TextBlock x:Name="helpTextblock" TextWrapping="Wrap" Margin="0,52,0,0" Foreground="White" FontSize="14"><Run Text="Welkom bij Trivial Time!"/><LineBreak /><Run Text="Het spel vindt plaats op een wielvormig spelbord bestaande uit tegels."/><LineBreak /><Run Text="Elke tegel heeft een categorie, deze komt overeen met de kleur van de tegel:"/><LineBreak /><LineBreak /><Run Foreground="Yellow" Text="Geel: Geschiedenis"/><LineBreak /><Run Foreground="Red" Text="Rood: Kunst en literatuur"/><LineBreak /><Run Foreground="Green" Text="Groen: Wetenschap"/><LineBreak /><Run Foreground="Violet" Text="Paars: Ontspanning"/><LineBreak /><Run Foreground="Blue" Text="Blauw: Aardrijkskunde"/><LineBreak /><Run Foreground="Orange" Text="Oranje: Sport"/><LineBreak/><Run Foreground="Gray" Text="Grijs: Opnieuw gooien"></Run><LineBreak /><LineBreak /><Run Text="Als je met je pion op een tegel belandt moet je een vraag beantwoorden (tenzij de tegel grijs is) die overeenkomt met de categorie van die tegel."/><LineBreak /><Run Text="Heb je de vraag juist, dan mag je nog eens gooien, anders is het aan de volgende speler."/><LineBreak /><Run Text="Als je op een grote tegel staat en de bijhorende vraag juist beantwoordt krijg je een taartstukje van die categorie."/><LineBreak /><Run Text="Het doel van het spel is om een taartstukje van elke categorie te verzamelen in je taartvormige pion en met je volle taartvorm naar het midden terug te keren."/><LineBreak /><Run Text="Als je het midden bereikt met alle stukjes in je pion, heb je gewonnen."/><LineBreak /><LineBreak /><Run Text="Veel plezier!"/><LineBreak/><LineBreak/>Belangrijk: Je kan je spel enkel opslaan voordat je de teerling moet werpen.</TextBlock>
+                </Grid>
+                <Grid x:Name="loadSaveGrid" HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="489" Margin="335,164,0,0" Visibility="Hidden">
+                    <StackPanel x:Name="saveSlotStackpanel">
+                        <local:SaveSlotControl x:Name="saveSlot1" Height="70" Margin="0,0,0,10" Color="#FF3C6A34" Text="Leeg" />
+                        <local:SaveSlotControl x:Name="saveSlot2" Height="70" Margin="0,0,0,10" Color="#FF3C6A34" Text="Leeg" />
+                        <local:SaveSlotControl x:Name="saveSlot3" Height="70" Margin="0,0,0,10" Color="#FF3C6A34" Text="Leeg" />
+                        <local:SaveSlotControl x:Name="saveSlot4" Height="70" Margin="0,0,0,10" Color="#FF3C6A34" Text="Leeg" />
+                        <local:SaveSlotControl x:Name="saveSlot5" Height="70" Margin="0,0,0,10" Color="#FF3C6A34" Text="Leeg" />
+                    </StackPanel>
+                </Grid>
+
+                <local:PromtControl x:Name="promptControl" Margin="150,0" VerticalAlignment="Center" HorizontalAlignment="Center" OkColor="#FF2B6311" CancelColor="#FF811717" Visibility="Hidden" />
+                <local:SavePromptControl x:Name="savePromptControl" Margin="200,0" VerticalAlignment="Center" HorizontalAlignment="Center" OkColor="#FF3C6A34" CancelColor="#FFA81414" Visibility="Hidden" />
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>

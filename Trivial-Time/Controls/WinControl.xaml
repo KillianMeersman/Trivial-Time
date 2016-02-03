@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="WinControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="275.167" d:DesignWidth="600">
+
+    <Viewbox>
+
+        <Grid x:Name="mainGrid" Height="275" Width="600">
+            <Grid.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF2D2766" Offset="0"/>
+                    <GradientStop Color="#FF242142" Offset="1"/>
+                    <GradientStop Color="#FF282352" Offset="0.609"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+            <Image x:Name="crownImage" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="102" Margin="238,10,0,0" Source="/Trivial-Time;component/Resources/crownIcon.png"/>
+            <TextBlock x:Name="winTextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Speler 1 wint!" VerticalAlignment="Top" Margin="10,115,0,0" FontSize="48" Width="580" TextAlignment="Center" Foreground="#FFC1BB3E"/>
+            <Rectangle x:Name="okRectangle" Fill="#FF999208" HorizontalAlignment="Center" Height="45" VerticalAlignment="Bottom" Width="267" Margin="160,0,173,20" RadiusY="20" RadiusX="20"/>
+            <TextBlock x:Name="okTextblock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Terug naar het menu" VerticalAlignment="Bottom" Margin="195,0,205,34" Foreground="White" TextAlignment="Center" Width="200"/>
+            <Rectangle Stroke="#FF181440"/>
+        </Grid>
+
+    </Viewbox>
+
+</UserControl>

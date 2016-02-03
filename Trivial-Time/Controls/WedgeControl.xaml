@@ -1,0 +1,19 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+	mc:Ignorable="d"
+	x:Class="WedgeControl"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+    <Grid x:Name="LayoutRoot">
+        <Polygon x:Name="MainWedge" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Stretch="Uniform" Points="0,8 10,5.878 20,3.744 30,2.384 40,1.519 50,0.967 60,0.616 70,0.39 80,0.25 90,0 100,0.25 110,0.39 120,0.616 130,0.967 140,1.519 150,2.384 160,3.744 170,5.878 180,8 160,120 20,120" Fill="Gray"/>
+        <Polygon x:Name="InnerWedge" Points="0,8 10,5.878 20,3.744 30,2.384 40,1.519 50,0.967 60,0.616 70,0.39 80,0.25 90,0 100,0.25 110,0.39 120,0.616 130,0.967 140,1.519 150,2.384 160,3.744 170,5.878 180,8 160,120 20,120" StrokeThickness="3" Stroke="White" Stretch="Uniform" Margin="3"/>
+        <Viewbox x:Name="imageViewBox">
+            <Image x:Name="categoryImage" MinWidth="250" MinHeight="250" Height="280" Width="440" Margin="100"/>
+        </Viewbox>
+    </Grid>
+</UserControl>

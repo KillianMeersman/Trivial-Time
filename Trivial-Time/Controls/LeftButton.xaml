@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="LeftButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="64.5" d:DesignWidth="218.5" Width="145" Height="60">
+    <Grid x:Name="rootGrid">
+
+        <Rectangle x:Name="leftRectangle" Fill="#FF3C6A34" Margin="0,0,73,0" RadiusY="30" RadiusX="30"/>
+
+        <Rectangle x:Name="MainRectangle" Fill="#FF3C6A34" Margin="29,0,0,0" RadiusX="10" RadiusY="10"/>
+        <TextBlock x:Name="MainTextblock" TextWrapping="Wrap" Text="Start spel" Margin="60,22,0,20" Foreground="#FFF3F3F3" HorizontalAlignment="Left" Width="82" VerticalAlignment="Center" Height="18"/>
+        <Image x:Name="MainImage" Margin="20,0,0,0" Source="/Trivial-Time;component/Resources/playIcon.png" HorizontalAlignment="Left" Width="30" VerticalAlignment="Center" Height="30"/>
+
+    </Grid>
+</UserControl>
