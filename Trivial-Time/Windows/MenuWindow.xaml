@@ -87,16 +87,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBox x:Name="serverTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="ineke.broeders.be" VerticalAlignment="Top" Width="679" Margin="101,76,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"/>
+                    <TextBox x:Name="serverTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="localhost" VerticalAlignment="Top" Width="679" Margin="101,76,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"/>
                     <Label Content="MySQL database" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,16,0,0" Foreground="White" FontSize="24"/>
                     <Rectangle Fill="White" HorizontalAlignment="Left" Height="3" Stroke="Black" VerticalAlignment="Top" Width="668" Margin="10,55,0,0"/>
                     <Label Content="Server:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0" FontSize="14" Foreground="White"/>
                     <Label Content="Database:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,104,0,0" FontSize="14" Foreground="White"/>
-                    <TextBox x:Name="databaseTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="trivialtime1415" VerticalAlignment="Top" Width="679" Margin="101,110,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                    <TextBox x:Name="databaseTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="trivialtimedb" VerticalAlignment="Top" Width="679" Margin="101,110,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
                     <Label Content="User-ID:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,138,0,0" FontSize="14" Foreground="White"/>
                     <Label Content="Paswoord:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,172,0,0" FontSize="14" Foreground="White"/>
-                    <TextBox x:Name="userIdTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="ll-64375" VerticalAlignment="Top" Width="679" Margin="101,144,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
-                    <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="101,178,0,0" Height="23" Width="679" Password="thetarun" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                    <TextBox x:Name="userIdTextbox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="root" VerticalAlignment="Top" Width="679" Margin="101,144,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                    <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="101,178,0,0" Height="23" Width="679" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
                     <Label Content="Volledig scherm:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,345,0,0" FontSize="14" Foreground="White"/>
                     <CheckBox x:Name="fullscreenCheckbox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="127,354,0,0"  IsChecked="True" Unchecked="fullscreenCheckbox_Unchecked"/>
                     <Label Content="Grafische opties" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,298,0,0" Foreground="White" FontSize="24"/>

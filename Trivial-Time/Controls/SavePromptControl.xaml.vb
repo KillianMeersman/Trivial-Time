@@ -69,7 +69,7 @@
         Text = ""
     End Sub
 
-    Private Sub cancelRectangle_MouseEnter(sender As Object, e As RoutedEventArgs) Handles cancelRectangle.MouseEnter, cancelRectangle.MouseEnter
+    Private Sub cancelRectangle_MouseEnter(sender As Object, e As RoutedEventArgs) Handles cancelRectangle.MouseEnter, cancelTextblock.MouseEnter
         cancelRectangle.Fill = Brushes.White
     End Sub
 
@@ -77,7 +77,7 @@
         cancelRectangle.Fill = _cancelColor
     End Sub
 
-    Private Sub cancelRectangle_MouseDown(sender As Object, e As RoutedEventArgs) Handles cancelRectangle.MouseDown, cancelRectangleTextblock.MouseDown
+    Private Sub cancelRectangle_MouseDown(sender As Object, e As RoutedEventArgs) Handles cancelRectangle.MouseDown, cancelTextblock.MouseDown
         cancelRectangle.Fill = _cancelColor
         Me.Visibility = Windows.Visibility.Hidden
         RaiseEvent Cancel()
