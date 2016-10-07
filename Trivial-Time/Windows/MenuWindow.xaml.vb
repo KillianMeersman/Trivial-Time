@@ -123,7 +123,6 @@ Public Class MenuWindow
     End Sub
 
     Private Sub connectButton_Click(sender As Object, e As RoutedEventArgs) Handles connectButton.MouseDown
-        'server=ineke.broeders.be; database=trivialtime1415; uid=ll-64375; pwd=thetarun
         ConnectionString = "server=" & serverTextbox.Text & ";database=" & databaseTextbox.Text & ";uid=" & userIdTextbox.Text & ";pwd=" & passwordBox.Password
         Try
             If resumeButton.Enabled = False Then

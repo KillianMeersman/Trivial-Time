@@ -91,7 +91,6 @@ Friend Module MainModule
     End Sub
 
     Public Sub connectToDatabase()
-        'Dim connectionString As String = "server= " & menuWindow.serverTextbox.Text & "; database= " & menuWindow.databaseTextbox.Text & "; uid=" & menuWindow.userIdTextbox.Text & "; pwd=" & menuWindow.passwordBox.Password
         questionRepository = New QuestionRepository(Settings.ConnectionString)
     End Sub
 
