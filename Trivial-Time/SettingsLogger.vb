@@ -1,17 +1,22 @@
 ﻿Imports System.IO
 Public Class SettingsLogger
 
-    Public Sub writeSettings()
-        Using writer As New StreamWriter("settings.txt", False)
-            writer.WriteLine("*** Game settings ***")
-            writer.WriteLine("fullscreen: " & Settings.FullScreenEnabled)
-            writer.WriteLine("skipStartingSequence: " & Settings.SkipPlayerChoiceAnimation)
-            writer.WriteLine("diceTickHighlight: " & Settings.DiceTickHighlightEffect)
-            writer.WriteLine("skipDiceClick: " & Settings.SkipDiceWithClick)
-            writer.WriteLine("informQuestion: " & Settings.InformQuestionOutcome)
-            writer.WriteLine("questionTime: " & Settings.QuestionTime)
-            writer.WriteLine("connectionString: " & Settings.ConnectionString)
-        End Using
+    Public Sub writeSettings(checkFile As Boolean)
+        If File.Exists("settings.txt") Then
+            Using writer As New StreamWriter("settings.txt", False)
+                writer.WriteLine("*** Game settings ***")
+                writer.WriteLine("fullscreen: " & Settings.FullScreenEnabled)
+                writer.WriteLine("skipStartingSequence: " & Settings.SkipPlayerChoiceAnimation)
+                writer.WriteLine("diceTickHighlight: " & Settings.DiceTickHighlightEffect)
+                writer.WriteLine("skipDiceClick: " & Settings.SkipDiceWithClick)
+                writer.WriteLine("informQuestion: " & Settings.InformQuestionOutcome)
+                writer.WriteLine("questionTime: " & Settings.QuestionTime)
+                writer.WriteLine("connectionString: " & Settings.ConnectionString)
+            End Using
+        Else
+            Settings.createSettings()
+            writeSettings(False)
+        End If
     End Sub
 
     Public Sub getSettings()

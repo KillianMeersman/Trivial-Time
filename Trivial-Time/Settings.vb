@@ -70,5 +70,14 @@
         End Set
     End Property
 
+    Public Sub createSettings()
+        _fullScreen = True
+        _skipPlayerChoiceAnimation = False
+        _diceTickHighlight = True
+        _skipDiceClick = True
+        _informQuestion = False
+        _questionTime = 15
+    End Sub
+
 End Module
 

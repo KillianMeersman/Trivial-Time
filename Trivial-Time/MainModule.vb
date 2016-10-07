@@ -21,7 +21,7 @@ Friend Module MainModule
         Try
             settingsLogger.getSettings()
         Catch
-            settingsLogger.writeSettings()
+            settingsLogger.writeSettings(True)
         End Try
 
         Try
@@ -107,7 +107,7 @@ Friend Module MainModule
     End Sub
 
     Public Sub Shutdown()
-        settingsLogger.writeSettings()
+        settingsLogger.writeSettings(True)
         Application.Current.Shutdown()
         End
     End Sub
